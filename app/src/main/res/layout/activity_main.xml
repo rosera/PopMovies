@@ -9,8 +9,11 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.technologynorth.rosera.popularmoviess1.MainActivity">
 
-    <TextView
+    <!-- TODO: Update link the fragment to the main activity -->
+    <fragment
+        android:id="@+id/movies_list"
+        android:name="com.technologynorth.rosera.popularmoviess1.MovieFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        tools:layout="@layout/fragment_movie" />
 </RelativeLayout>
