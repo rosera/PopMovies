@@ -37,7 +37,7 @@ public class MovieFragment extends Fragment {
 
     // TODO: Add variables
 //    private ArrayAdapter<Movie> mMovieAdapter       = null;
-//    private GridView            mGridViewMovies     = null;
+    private GridView            mGridViewMovies     = null;
     private ArrayList<Movie>    mMovieInformation   = null;
     private boolean mPopulate = false;
 
@@ -104,7 +104,7 @@ public class MovieFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_movie, container, false);
 
         // TODO: Get GridView reference
-        GridView mGridViewMovies = (GridView) rootView.findViewById(R.id.gridViewMovie);
+        mGridViewMovies = (GridView) rootView.findViewById(R.id.gridViewMovie);
 
         // TODO: Populate the adapter
 //        mMovieAdapter = new MovieAdapter(getActivity(), mMovieInformation);
@@ -116,6 +116,12 @@ public class MovieFragment extends Fragment {
         mGridViewMovies.setAdapter(new MovieAdapter(getActivity(), mMovieInformation));
 
         // TODO: Add an onItemClick method
+        mGridViewMovies.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(getActivity(), "Image " + position, Toast.LENGTH_LONG).show();
+            }
+        });
 
         return rootView;
     }
