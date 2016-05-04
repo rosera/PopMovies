@@ -29,7 +29,8 @@ public class MovieAdapter extends ArrayAdapter<Movie> {
 
     // ViewHolder pattern
     private static class ViewHolder {
-        ImageView mImageViewFilm;
+        ImageView mImageViewMovie;
+        TextView mTextViewMovie;
     }
 
 
@@ -51,48 +52,32 @@ public class MovieAdapter extends ArrayAdapter<Movie> {
 
     @Override
     public View getView(int position, View view, ViewGroup parent) {
-        ViewHolder  filmViewHolder;
-        View gridView;
-
-        LayoutInflater inflater = (LayoutInflater)
-                mActivity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
-        if (view == null) {
-            gridView = new View(mActivity);
-
-            gridView = inflater.inflate(R.layout.gridview_image, null);
-            gridView.setLayoutParams(new GridView.LayoutParams(350,475));
-            ImageView imageView = (ImageView)gridView.findViewById(R.id.imageViewMovie);
-            TextView textView = (TextView)gridView.findViewById(R.id.textViewMovie);
-
-            imageView.setImageResource(R.drawable.antman);
-            textView.setText("Antman");
-        }
-        else {
-            gridView = (View)view;
-        }
+        ViewHolder  viewHolder;
+        View        gridView;
 
         // TODO: Implement the ViewHolder pattern - see GridView bookmark StackOverflow
-//        if (view == null) {
-//            view = LayoutInflater.from(mActivity).inflate(R.layout.gridview_image, null);
-//            view.setLayoutParams(new GridView.LayoutParams(350,475));
-//
-//            filmViewHolder = new ViewHolder();
-//
-//            filmViewHolder.mImageViewFilm   = (ImageView) view.findViewById(R.id.imageViewMovie);
-//            view.setTag(filmViewHolder);
-//        } else {
-//            filmViewHolder = (ViewHolder) view.getTag();
-//        }
+        if (view == null) {
+            // Find the layout for gridview_image
+            gridView = LayoutInflater.from(mActivity).inflate(R.layout.gridview_image, null);
+            gridView.setLayoutParams(new GridView.LayoutParams(350,475));
 
 
-//        if (mMovies.get(position) != null) {
-//            filmViewHolder.mImageViewFilm.setImageResource(R.drawable.antman);
-////            ImageView imageView = new ImageView(mActivity);
-//
-//            // Set the information
-//  //          imageView.setImageResource(R.drawable.antman);
-//        }
+            viewHolder = new ViewHolder();
+
+            // Find the ImageView and populate
+            viewHolder.mImageViewMovie   = (ImageView) gridView.findViewById(R.id.imageViewMovie);
+            viewHolder.mImageViewMovie.setImageResource(R.drawable.antman);
+
+            // Find the TextView and populate
+            viewHolder.mTextViewMovie = (TextView) gridView.findViewById(R.id.textViewMovie);
+            viewHolder.mTextViewMovie.setText("Antman");
+
+            gridView.setTag(viewHolder);
+        } else {
+            gridView = (View) view;
+            gridView.getTag();
+
+        }
 
         return gridView;
     }
