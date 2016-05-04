@@ -11,10 +11,10 @@ public class MainActivity extends AppCompatActivity  implements MovieFragment.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Todo: Add a call to fragment
+        // TODO: Add a call to fragment
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.movies_list, new MovieFragment())
+                    .add(R.id.fragment_container, new MovieFragment())
                     .commit();
         }
     }

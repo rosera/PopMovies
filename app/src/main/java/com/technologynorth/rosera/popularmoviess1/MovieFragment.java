@@ -7,6 +7,12 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.GridView;
+import android.widget.Toast;
+
+import java.util.ArrayList;
 
 
 /**
@@ -29,6 +35,12 @@ public class MovieFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
+    // TODO: Add variables
+//    private ArrayAdapter<Movie> mMovieAdapter       = null;
+//    private GridView            mGridViewMovies     = null;
+    private ArrayList<Movie>    mMovieInformation   = null;
+    private boolean mPopulate = false;
+
     public MovieFragment() {
         // Required empty public constructor
     }
@@ -48,6 +60,7 @@ public class MovieFragment extends Fragment {
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
+
         return fragment;
     }
 
@@ -58,13 +71,53 @@ public class MovieFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+        // Todo: Allocate memory for the film information
+        if (mMovieInformation == null) {
+//            mMovieInformation.clear();
+            mMovieInformation = new ArrayList<Movie>();
+        }
+    }
+
+
+    private void setMovieList() {
+
+        mMovieInformation.add(new Movie("Antman", "2015", "TBC", "TBC"));
+        mMovieInformation.add(new Movie("Civil War", "2016", "TBC", "TBC"));
+        mMovieInformation.add(new Movie("Star Wars", "1978", "TBC", "TBC"));
+        mMovieInformation.add(new Movie("Matrix", "1999", "TBC", "TBC"));
+        mMovieInformation.add(new Movie("Pulp Fiction", "1994", "TBC", "TBC"));
+        mMovieInformation.add(new Movie("Antman", "2015", "TBC", "TBC"));
+        mMovieInformation.add(new Movie("Civil War", "2016", "TBC", "TBC"));
+        mMovieInformation.add(new Movie("Star Wars", "1978", "TBC", "TBC"));
+        mMovieInformation.add(new Movie("Matrix", "1999", "TBC", "TBC"));
+        mMovieInformation.add(new Movie("Pulp Fiction", "1994", "TBC", "TBC"));
+
+        mPopulate = true;
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_movie, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_movie, container, false);
+
+        // TODO: Get GridView reference
+        GridView mGridViewMovies = (GridView) rootView.findViewById(R.id.gridViewMovie);
+
+        // TODO: Populate the adapter
+//        mMovieAdapter = new MovieAdapter(getActivity(), mMovieInformation);
+        if (mPopulate == false) {
+            setMovieList();
+        }
+
+        // TODO: Set the Adapter with the content
+        mGridViewMovies.setAdapter(new MovieAdapter(getActivity(), mMovieInformation));
+
+        // TODO: Add an onItemClick method
+
+        return rootView;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
