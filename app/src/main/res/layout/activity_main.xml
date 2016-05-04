@@ -3,13 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/fragment_container"
+    tools:layout="@layout/fragment_movie"
     tools:context="com.technologynorth.rosera.popularmoviess1.MainActivity">
 
-    <!-- TODO: Update link the fragment to the main activity -->
-    <fragment
-        android:id="@+id/fragment_container"
-        android:name="com.technologynorth.rosera.popularmoviess1.MovieFragment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:layout="@layout/fragment_movie" />
 </RelativeLayout>
